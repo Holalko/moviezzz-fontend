@@ -14,6 +14,10 @@ class MoviePage extends React.Component {
         this.props.movieStore.fetchMovie(id);
     }
 
+    handleReserve = () => {
+        this.props.movieStore.reserve()
+    };
+
     render() {
         const movie = this.props.movieStore.Movie;
         return (
@@ -25,7 +29,7 @@ class MoviePage extends React.Component {
                         <p>{movie.description}</p>
                         <p>Price: {movie.price}$</p>
                         <p>Adults only: {movie.forAdults + ''}</p>
-                        <button className="btn btn-primary col-1">Reserve</button>
+                        <button onClick={this.handleReserve} className="btn btn-primary col-1">Reserve</button>
                     </div>
                 }
             </PageWrapper>

@@ -6,15 +6,18 @@ import Store from "./stores";
 import {Provider} from "mobx-react";
 import HomePage from "./pages/HomePage";
 import {Route, Switch, BrowserRouter} from "react-router-dom";
-import Navbar from "./components/Navbar";
+import "./styles/bootstrap.min.css";
+import "./styles/custom.css";
 import MoviePage from "./pages/MoviePage";
+import LoginPage from "./pages/LoginPage";
 
 
 render(
     <Provider {...Store}>
         <BrowserRouter>
             <Switch>
-                <Route exact path="/" component={App}/>
+                <Route exact path="/" component={LoginPage}/>
+                <Route exact path="/home" component={App}/>
                 <Route path="/movie/:value" component={MoviePage}/>
                 <Route path="/topics" component={HomePage}/>
             </Switch>
