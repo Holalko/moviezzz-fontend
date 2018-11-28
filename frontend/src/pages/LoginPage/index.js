@@ -26,6 +26,8 @@ class LoginPage extends React.Component {
         if (Number.isInteger(response)) {
             localStorage.setItem("userId", response);
             this.props.history.push("/home");
+        } else {
+            alert("Invalid username or password");
         }
     };
 

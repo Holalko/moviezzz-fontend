@@ -10,6 +10,7 @@ import "./styles/bootstrap.min.css";
 import "./styles/custom.css";
 import MoviePage from "./pages/MoviePage";
 import LoginPage from "./pages/LoginPage";
+import BorrowedPage from "./pages/BorrowedPage";
 
 
 render(
@@ -19,7 +20,7 @@ render(
                 <Route exact path="/" component={LoginPage}/>
                 <Route exact path="/home" component={App}/>
                 <Route path="/movie/:value" component={MoviePage}/>
-                <Route path="/topics" component={HomePage}/>
+                <Route path="/borrowed" component={BorrowedPage}/>
             </Switch>
         </BrowserRouter>
     </Provider>,

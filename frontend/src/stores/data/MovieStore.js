@@ -1,5 +1,6 @@
 import {observable, action, computed} from 'mobx';
 import axios from 'axios';
+import Store from "../index";
 
 class MovieStore {
     
@@ -19,9 +20,21 @@ class MovieStore {
         const userId = localStorage.getItem("userId");
         const movieId = this._movie.id;
 
-        const response = await axios.post(`http://localhost:8080/movies/reserve?movieId=${movieId}&userId=${userId}`)
-        console.log(response);
+        const response = await axios.post(`http://localhost:8080/movies/reserve?movieId=${movieId}&userId=${userId}`);
+        return response.data;
     }
+
+    async extendReservation(id){
+        const response = await axios.put(`http://localhost:8080/movies/extend-reservation/${id}`);
+        if(response.data === true){
+            Store.moviesStore.getAllBorrowedMovies(localStorage.getItem("userId"));
+            alert("Movie reservation was successfully extended!")
+        } else {
+            alert("Movie reservation could not be extended, because it's followed by another customers.")
+        }
+        return response.data;
+    }
+
 }
 
 export default MovieStore;
