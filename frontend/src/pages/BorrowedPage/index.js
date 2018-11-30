@@ -12,8 +12,8 @@ class BorrowedPage extends React.Component {
     }
 
     handleClick = (id, event) => {
-      event.preventDefault();
-      this.props.movieStore.extendReservation(id);
+        event.preventDefault();
+        this.props.movieStore.extendReservation(id);
     };
 
     render() {
@@ -27,19 +27,24 @@ class BorrowedPage extends React.Component {
                         <th scope="col">Year of release</th>
                         <th scope="col">Due date</th>
                         <th scope="col">For adults</th>
-                        <th scope="col" />
+                        <th scope="col"/>
                     </tr>
                     </thead>
                     <tbody>
                     {
                         movies.map((movie) => {
                             return (
-                                <tr key={movie[0]}>
-                                    <td scope="row">{movie[1]}</td>
-                                    <td>{movie[2]}</td>
-                                    <td>{movie[4]}</td>
-                                    <td>{movie[3] + ''}</td>
-                                    <td><button className="btn btn-success" onClick={(event) => this.handleClick(movie[0], event)}>Extends reservation</button></td>
+                                <tr key={movie.id}>
+                                    <td scope="row">{movie.name}</td>
+                                    <td>{movie.yearOfRelease}</td>
+                                    {movie["borrowed"] !== null ? <td>{movie["borrowed"].dueDate}</td> : null}
+                                    <td>{movie.forAdults + ''}</td>
+                                    <td>
+                                        <button className="btn btn-success"
+                                                onClick={(event) => this.handleClick(movie.id, event)}>Extend
+                                            reservation
+                                        </button>
+                                    </td>
                                 </tr>
                             )
                         })

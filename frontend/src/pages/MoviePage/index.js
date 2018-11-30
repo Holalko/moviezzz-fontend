@@ -18,8 +18,8 @@ class MoviePage extends React.Component {
     handleReserve = async () => {
         const response = await this.props.movieStore.reserve();
         if (response === false) {
-            alert("Movie could not be reserved, because it's reserved or borrowed by another customers.");
-        } else if(response === true) {
+            alert("Movie could not be reserved, because it's reserved or borrowed by another customers. Watch dog has been added to movie");
+        } else if (response === true) {
             alert("Movie was successfully reserved!");
         }
     };
@@ -35,7 +35,8 @@ class MoviePage extends React.Component {
                         <p>{movie.description}</p>
                         <p>Price: {movie.price}$</p>
                         <p>Adults only: {movie.forAdults + ''}</p>
-                        <button onClick={this.handleReserve} className="btn btn-primary col-1">Reserve</button>
+                        {localStorage.getItem("userId") == 77777 ? null :
+                            <button onClick={this.handleReserve} className="btn btn-primary col-1">Reserve</button>}
                     </div>
                 }
             </PageWrapper>

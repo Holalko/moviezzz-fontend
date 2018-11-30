@@ -11,6 +11,8 @@ import "./styles/custom.css";
 import MoviePage from "./pages/MoviePage";
 import LoginPage from "./pages/LoginPage";
 import BorrowedPage from "./pages/BorrowedPage";
+import AddMoviePage from "./pages/AddMoviePage";
+import FollowedAndReservedPage from "./pages/FollowedAndReservedPage";
 
 
 render(
@@ -21,6 +23,8 @@ render(
                 <Route exact path="/home" component={App}/>
                 <Route path="/movie/:value" component={MoviePage}/>
                 <Route path="/borrowed" component={BorrowedPage}/>
+                <Route path="/addMovie" component={AddMoviePage}/>
+                <Route path="/followedAndReserved" component={FollowedAndReservedPage}/>
             </Switch>
         </BrowserRouter>
     </Provider>,

@@ -35,6 +35,16 @@ class MovieStore {
         return response.data;
     }
 
+    async createMovie(movie){
+        const response = await axios.post(`http://localhost:8080/movies`, movie);
+        return response.data;
+    }
+
+    async rewrite(movie){
+        const response = await axios.put(`http://localhost:8080/movies/rewrite`, movie);
+        return response.data;
+    }
+
 }
 
 export default MovieStore;

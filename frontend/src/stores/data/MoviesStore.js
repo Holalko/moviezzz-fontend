@@ -4,6 +4,8 @@ import axios from 'axios';
 class MoviesStore {
 
     @observable _movies = [];
+    @observable _followed = [];
+    @observable _reserved = [];
 
     @computed get Movies() {return this._movies;}
 
@@ -25,6 +27,19 @@ class MoviesStore {
         const movies = await axios.get(`http://localhost:8080/movies/find-by-name?name=${name}`);
         this.setMovies(movies.data);
     }
+
+    async getFollowed() {
+        const userId = localStorage.getItem("userId");
+        const movies = await axios.get(`http://localhost:8080/movies/user/${userId}/following`);
+        this._followed = movies.data;
+    }
+
+    async getReserved() {
+        const userId = localStorage.getItem("userId");
+        const movies = await axios.get(`http://localhost:8080/movies/user/${userId}/reserved`);
+        this._reserved = movies.data;
+    }
+
 }
 
 export default MoviesStore;
